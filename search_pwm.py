@@ -54,22 +54,23 @@ def search_motifs(file):
 
 
 from joblib import Parallel, delayed
-# 
-# background = {'A':0.26,'C':0.24,'G':0.24,'T':0.26}
-# dfObj = pd.DataFrame(columns=motiffilelist)
-# n=0
-# for test_seq in seq_records:
-# 	# list = []
-# 	# for file in motiffilelist:
-# 	# 	filename = "{}/{}".format('./Oryza_sativa_2021_03_04_1 33_am/pwms_all_motifs',file)
-# 	# 	found=search_motifs(file)
-# 	# 	list.append(found)
-# 	#motiffilelist_small = motiffilelist[:5]
-# 	#list = Parallel(n_jobs=-1)([delayed(search_motifs)(file) for file in motiffilelist])
-# 	dfObj.loc[n] = Parallel(n_jobs=-1)([delayed(search_motifs)(file) for file in motiffilelist])
-# 	n=n+1
-#
-# dfObj.to_csv("motifcount_CISBP.csv")
+
+background = {'A':0.26,'C':0.24,'G':0.24,'T':0.26}
+dfObj = pd.DataFrame(columns=motiffilelist)
+n=0
+for test_seq in seq_records:
+    # These comment-outed commands are for non-parallel calculation
+    # list = []
+	# for file in motiffilelist:
+	# 	filename = "{}/{}".format('./Oryza_sativa_2021_03_04_1 33_am/pwms_all_motifs',file)
+	# 	found=search_motifs(file)
+	# 	list.append(found)
+	#motiffilelist_small = motiffilelist[:5]
+	#list = Parallel(n_jobs=-1)([delayed(search_motifs)(file) for file in motiffilelist])
+	dfObj.loc[n] = Parallel(n_jobs=-1)([delayed(search_motifs)(file) for file in motiffilelist])
+	n=n+1
+
+dfObj.to_csv("motifcount_CISBP.csv")
 
 ## Another method to determine threshold as 80% value to max_score
 def search_motifs2(file):
@@ -100,7 +101,8 @@ def search_motifs2(file):
 dfObj = pd.DataFrame(columns=motiffilelist)
 n=0
 for test_seq in seq_records:
-	# list = []
+    # These comment-outed commands are for non-parallel calculation
+    # list = []
 	# for file in motiffilelist:
 	# 	filename = "{}/{}".format('./Oryza_sativa_2021_03_04_1 33_am/pwms_all_motifs',file)
 	# 	found=search_motifs(file)
