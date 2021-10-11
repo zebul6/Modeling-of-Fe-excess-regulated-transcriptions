@@ -244,7 +244,7 @@ accur_in_alldata = mean(as.data.frame(caret::confusionMatrix(pred, borutadata$y)
 # Save the result of statistical analysis
 caret::confusionMatrix(pred, borutadata$y)
 sink("20210316_stat_MAMA-Boruta_model650.txt")
-print(caret::confusionMatrix(pred, data$y))
+print(caret::confusionMatrix(pred, borutadata$y))
 sink()
 
 
@@ -496,7 +496,7 @@ pred = predict(best_split$xgb_best, data.matrix(cisdb2data[,datasplit$colsort]))
 accur_in_alldata = mean(as.data.frame(caret::confusionMatrix(pred, cisdb2data$y)$byClass)[,11])
 caret::confusionMatrix(pred, borutadata$y)
 sink("20210316_stat_CISDB2-Boruta_model.txt")
-print(caret::confusionMatrix(pred, data$y))
+print(caret::confusionMatrix(pred, cisdb2data$y))
 sink()
 # 54%
 
@@ -529,7 +529,7 @@ pred = predict(best_split$xgb_best, data.matrix(cisdb3data[,datasplit$colsort]))
 accur_in_alldata = mean(as.data.frame(caret::confusionMatrix(pred, cisdb3data$y)$byClass)[,11])
 caret::confusionMatrix(pred, borutadata$y)
 sink("20210316_stat_CISDB3-Boruta_model.txt")
-print(caret::confusionMatrix(pred, data$y))
+print(caret::confusionMatrix(pred, cisdb3data$y))
 sink()
 # 56%
 
@@ -561,9 +561,9 @@ accur_in_test = mean(as.data.frame(caret::confusionMatrix(pred , best_split$best
 datasplit <- reproduce_split(cisdb_fpr001data,best_split$best_seednumber)
 pred = predict(best_split$xgb_best, data.matrix(cisdb_fpr001data[,datasplit$colsort]))
 accur_in_alldata = mean(as.data.frame(caret::confusionMatrix(pred, cisdb_fpr001data$y)$byClass)[,11])
-caret::confusionMatrix(pred, borutadata$y)
+caret::confusionMatrix(pred, cisdb_fpr001data$y)
 sink("20210316_stat_CISDB_fpr001-Boruta_model.txt")
-print(caret::confusionMatrix(pred, data$y))
+print(caret::confusionMatrix(pred, cisdb_fpr001data$y))
 sink()
 
 #
@@ -595,9 +595,9 @@ accur_in_test = mean(as.data.frame(caret::confusionMatrix(pred , best_split$best
 datasplit <- reproduce_split(cisdb_fpr005data,best_split$best_seednumber)
 pred = predict(best_split$xgb_best, data.matrix(cisdb_fpr005data[,datasplit$colsort]))
 accur_in_alldata = mean(as.data.frame(caret::confusionMatrix(pred, cisdb_fpr005data$y)$byClass)[,11])
-caret::confusionMatrix(pred, borutadata$y)
+caret::confusionMatrix(pred, cisdb_fpr005data$y)
 sink("20210316_stat_CISDB_fpr005-Boruta_model.txt")
-print(caret::confusionMatrix(pred, data$y))
+print(caret::confusionMatrix(pred, cisdb_fpr005data$y))
 sink()
 
 # 55%
