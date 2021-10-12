@@ -16,6 +16,7 @@ seq_all = list(SeqIO.parse(open(file_in, mode='r'), 'fasta'))
 gc_contents = [getGC(seq) for seq in seq_all]
 statistics.mean(gc_contents)
 # 48.19
+# Change the following "pseudocounts={"A":0.52, "C": 0.48, "G": 0.48, "T": 0.52}" and "background = {'A':0.26,'C':0.24,'G':0.24,'T':0.26}" using this value.
 
 ## Load motifs from CIS-BP (http://cisbp.ccbr.utoronto.ca/)
 ## All the CIS-BP rice motifs were downloaded as Oryza_sativa_2021_03_04_1 33_am.zip amd decompressed.
@@ -70,7 +71,7 @@ for test_seq in seq_records:
 	dfObj.loc[n] = Parallel(n_jobs=-1)([delayed(search_motifs)(file) for file in motiffilelist])
 	n=n+1
 
-dfObj.to_csv("motifcount_CISBP.csv")
+dfObj.to_csv("motifcount_CISBP1.csv")
 
 ## Another method to determine threshold as 80% value to max_score
 def search_motifs2(file):
